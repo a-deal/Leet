@@ -1,7 +1,6 @@
 var removeElements = function(head, val) {
     var prev;
     if (head === null) return head;
-    if (head.next === null) return head.val === val ? null : head;
 
     var traverse = function (node) {
 

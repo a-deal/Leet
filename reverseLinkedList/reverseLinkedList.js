@@ -1,5 +1,5 @@
 var reverseList = function(head) {
-    var node = head, newHead, newTail;
+    var node = head, newHead, tail;
 
     if (head === null || head.next === null) return head;
 

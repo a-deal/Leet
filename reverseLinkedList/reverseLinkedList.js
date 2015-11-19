@@ -1,3 +1,11 @@
+// Time Complexity is O(n log n) because at the very least this algorithm will
+// need to iterate through the entire list once thus forming a basis of number of operations
+// equaling the size of the input. The inner loop adds to the existing
+// time complexity but with a decreasing number of operations per loop. Accordingly,
+// the total number of operations will not equal a n^2 time complexity. A decreasing
+// number of iterations per loop points to a logarithmic time complexity which, on top
+// of a linear basis, adds to a O(n log n) time complexity. Q.E.D.
+
 var reverseList = function(head) {
     var node = head, newHead, tail;
 

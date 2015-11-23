@@ -1,20 +1,16 @@
 var isBalanced = function(root) {
 
-    if (root === null || (root.left === null && root.right === null)) return true;
-
     return findBalance(root) === undefined ? true : false;
 
 };
 function findBalance (root) {
-        var diff;
 
         if (root === null ||(root.left === null && root.right === null)) return;
 
         if (root.left === null || root.right === null) {
             if(depth(root) > 1) return false;
-        } else {
-            diff = depth(root.right) - depth(root.left)
-            if (Math.abs(diff) > 1) return false;
+        } else if (Math.abs(depth(root.right) - depth(root.left)) > 1) {
+            return false;
         }
 
         if (root.right !== null && findBalance(root.right) !== undefined) return false;

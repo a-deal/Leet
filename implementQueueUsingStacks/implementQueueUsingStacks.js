@@ -3,6 +3,7 @@ var Queue = function() {
     this.outbox = [];
 };
 
+
 Queue.prototype.push = function(x) {
     this.inbox.push(x);
     this.length++;

@@ -6,6 +6,10 @@
 // number of iterations per loop points to a logarithmic time complexity which, on top
 // of a linear basis, adds to a O(n log n) time complexity. Q.E.D.
 
+/*
+
+///////////////// Naive Approach ////////////////////
+
 var reverseList = function(head) {
     var node = head, newHead, tail;
 
@@ -30,4 +34,26 @@ var reverseList = function(head) {
     }
 
     return newHead;
+};
+*/
+
+/*
+
+//////////// Refactored Approach
+
+TC : O(n)
+SC : O(1)
+
+*/
+
+var reverseList = function(head) {
+    var newHead = null;
+    while (head !== null) {
+        var current = head;
+        head = head.next;
+        current.next = newHead;
+        newHead = current;
+    }
+    return newHead;
+
 };

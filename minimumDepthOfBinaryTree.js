@@ -1,25 +1,23 @@
 var minDepth = function(root) {
-    var shortest;
+    if (root === null) {
+        return 0;
+    };
 
-    if (root === null) return 0;
-
-    function findDepth (node, height) {
-        if (node.right === null && node.left === null) {
-            if (shortest === undefined || height < shortest) {
-                shortest = height;
-            }
-        }
-
-        if (node.right !== null) {
-            findDepth(node.right, height + 1)
-        }
-
-        if (node.left !== null) {
-            findDepth(node.left, height + 1)
-        }
+    if (root.left !== null) {
+        var leftTree = 1 + minDepth(root.left);
     }
-    findDepth(root, 1);
 
-    return shortest;
+    if (root.right !== null) {
+        var rightTree = 1 + minDepth(root.right);
+    }
 
+    if (!leftTree && !rightTree){
+        return 1;
+    } else if (!rightTree) {
+        return leftTree;
+    } else if (!leftTree) {
+        return rightTree;
+    } else {
+        return leftTree < rightTree ? leftTree : rightTree;
+    }
 };

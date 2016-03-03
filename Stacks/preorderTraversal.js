@@ -31,24 +31,26 @@ function preorderTraversal (root)
 
 */
 
-var preorderTraversal = function(root) {
-  var preorder = [], stack = [root];
+var inorderTraversal = function(root) {
+    var inorder = [], stack = [root];
+    while (root && stack.length) {
+        var currentRoot = stack[stack.length - 1];
 
-  while (root && stack.length) {
-    var currentRoot = stack.pop();
+        while(currentRoot.left) {
+            var left = currentRoot.left;
+            currentRoot.left = null;
+            stack.push(left)
+            currentRoot = left;
+        }
 
-    preorder.push(currentRoot.val);
+        currentRoot = stack.pop();
+        inorder.push(currentRoot.val);
 
-    if (currentRoot.right !== null) stack.push(currentRoot.right);
+        if (currentRoot.right !== null) {
+            stack.push(currentRoot.right)
+            currentRoot.right = null
+        }
+   }
 
-    while (currentRoot.left) {
-      var left = currentRoot.left
-      preorder.push(left.val)
-      if (left.right) stack.push(left.right)
-      currentRoot.left = null;
-      currentRoot = left;
-    }
-
-  }
-  return preorder;
+    return inorder;
 };

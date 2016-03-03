@@ -51,26 +51,25 @@ while (stack.length > 0)
 
 */
 var inorderTraversal = function(root) {
-    var node, inorder = [], stack = [root];
-    if (root !== null) {
-        while (stack.length > 0) {
-            var currentRoot = stack[stack.length - 1];
-            var currentLeft = currentRoot.left
-            currentRoot.left = null;
+    var inorder = [], stack = [root];
+    while (root && stack.length) {
+        var currentRoot = stack[stack.length - 1];
 
-            while(currentLeft !== null) {
-                stack.push(currentLeft)
-                var temp = currentLeft.left
-                currentLeft.left = null;
-                currentLeft = temp;
-            }
-            node = stack.pop();
-            inorder.push(node.val);
-            if (node.right !== null) {
-                stack.push(node.right)
-            }
-            node.right = null
-       }
-    }
+        while(currentRoot) {
+            var left = currentRoot.left;
+            currentRoot.left = null;
+            stack.push(left)
+            currentRoot = left;
+        }
+
+        currentRoot = stack.pop();
+        inorder.push(currentRoot.val);
+
+        if (currentRoot.right !== null) {
+            stack.push(currentRoot.right)
+            currentRoot.right = null
+        }
+   }
+
     return inorder;
 };

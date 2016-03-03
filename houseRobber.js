@@ -11,8 +11,6 @@ determine the maximum amount of money you can rob tonight without alerting the p
 Input  : <array> nums
 Output : <int> nums
 
-*/
-
 function rob (nums, current, next)
   current = current || 0;
   if (nums[current]) {
@@ -23,6 +21,26 @@ function rob (nums, current, next)
   }
 
   return currentHouse > nextHouse ? currentHouse : nextHouse
+*/
+
+
+
+function rob (nums) {
+
+  if (nums[0]) {
+    var currentHouse = nums[0] + rob(nums.slice(2));
+  }
+  if (nums[1]) {
+    var nextHouse = nums[1] + rob(nums.slice(3));
+  }
+
+  if (currentHouse && nextHouse) {
+    return currentHouse > nextHouse ? currentHouse : nextHouse
+  } else {
+    return 0;
+  }
+
+}
 
 
 

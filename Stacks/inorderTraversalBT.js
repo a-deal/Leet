@@ -22,14 +22,14 @@ var inorderTraversal = function(root) {
     var inorder = [], stack = [];
     while (stack.length || root)
 
-      if (root)
+      if (root) {
         stack.push(root);
         root = root.left;
-      else
+      } else {
         temp = stack.pop();
         inorder.push(temp.val);
         root = temp.right
-
-
+      }
+      
     return inorder;
 };

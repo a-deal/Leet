@@ -1,4 +1,9 @@
 /*
+Given a binary tree, return the preorder traversal of its nodes' values.
+
+Note: Recursive solution is trivial, could you do it iteratively?
+
+
 Input: <object> root
 Output : <array> preorder
 
@@ -6,7 +11,7 @@ Output : <array> preorder
 function preorderTraversal (root)
   let preorder = [], stack = [root];
 
-  while (root && stack.length) 
+  while (root && stack.length)
     var currentRoot = stack.pop();
 
     preorder.push(currentRoot.val);

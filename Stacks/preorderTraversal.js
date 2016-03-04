@@ -4,6 +4,7 @@ Given a binary tree, return the preorder traversal of its nodes' values.
 Note: Recursive solution is trivial, could you do it iteratively?
 
 
+
 Input: <object> root
 Output : <array> preorder
 
@@ -31,26 +32,15 @@ function preorderTraversal (root)
 
 */
 
-var inorderTraversal = function(root) {
-    var inorder = [], stack = [root];
-    while (root && stack.length) {
-        var currentRoot = stack[stack.length - 1];
+var preorderTraversal = function(root) {
+  var preorder = [], stack = [root];
 
-        while(currentRoot.left) {
-            var left = currentRoot.left;
-            currentRoot.left = null;
-            stack.push(left)
-            currentRoot = left;
-        }
-
-        currentRoot = stack.pop();
-        inorder.push(currentRoot.val);
-
-        if (currentRoot.right !== null) {
-            stack.push(currentRoot.right)
-            currentRoot.right = null
-        }
-   }
-
-    return inorder;
+  while (stack.length) {
+    var node = stack.pop();
+    if (!node) continue;
+    preorder.push(currentRoot.val);
+    stack.push(node.right)
+    stack.push(node.left)
+  }
+  return preorder;
 };

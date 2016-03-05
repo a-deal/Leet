@@ -67,7 +67,7 @@ function getFolderNames (path) {
 }
 
 function getAbsolutePath (folders) {
-  return folders.reduce(function (memo, folder, index) {
+  return folders.reduce(function (memo, folder) {
     if (folder === '/..') {
       memo.pop();
     } else if (folder !== '/.' && folder !== '/') {

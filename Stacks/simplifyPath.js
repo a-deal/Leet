@@ -67,32 +67,22 @@ function getFolderNames (path) {
 }
 
 function getAbsolutePath (folders) {
-  for (var i = 0; i < folders.length; i++) {
-    var folder = folders[i];
-    if (folder === '/.' || (folder === '/')) {
-      folders.splice(i, 1);
-      i = i - 1;
-    } else if (folder === '/..'){
-        if (folders[i - 1]) {
-        folders.splice(i - 1, 2);
-        i = i - 2;
-      } else {
-        folders.splice(i, 1)
-        i = i - 1;
-      }
+  return folders.reduce(function (memo, folder, index) {
+    if (folder === '/..') {
+      memo.pop();
+    } else if (folder !== '/.' && folder !== '/') {
+      memo.push(folder);
     }
-  }
-  return folders;
+    return memo;
+  }, [])
 }
 
 
-
-
-console.log(simplify('/../')); // '/'
-console.log(simplify('/home/')); // '/home'
-console.log(simplify("/home//foo/")); // '/home/foo'
-console.log(simplify("/a/./b/../../c/")); // '/c'
-console.log(simplify("/.../"));
-console.log(simplify("/a/.../"));
-console.log(simplify("///TJbrd/owxdG//")); //"/TJbrd/owxdG"
-console.log(simplify("/a/./b///../c/../././../d/..//../e/./f/./g/././//.//h///././/..///"));
+console.log(simplifyPath('/../')); // '/'
+console.log(simplifyPath('/home/')); // '/home'
+console.log(simplifyPath("/home//foo/")); // '/home/foo'
+console.log(simplifyPath("/a/./b/../../c/")); // '/c'
+console.log(simplifyPath("/.../"));
+console.log(simplifyPath("/a/.../"));
+console.log(simplifyPath("///TJbrd/owxdG//")); //"/TJbrd/owxdG"
+console.log(simplifyPath("/a/./b///../c/../././../d/..//../e/./f/./g/././//.//h///././/..///"));

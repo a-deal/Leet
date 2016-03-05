@@ -47,31 +47,16 @@ function simplify (path)
 "use strict";
 
 function simplifyPath (path) {
-  var folders = getAbsolutePath(getFolderNames(path));
+  var folders = getAbsolutePath(path.split('/'));
   return folders.length > 0 ? folders.join('') : '/';
-}
-
-function getFolderNames (path) {
-  var temp = '';
-  var folders = [];
-  for (var i = 0; i < path.length; i++) {
-    var current = path[i];
-    if (current === '/' && temp.length){
-      folders.push(temp);
-      temp = '';
-    }
-    temp += current;
-  }
-  folders.push(temp);
-  return folders;
 }
 
 function getAbsolutePath (folders) {
   return folders.reduce(function (memo, folder) {
-    if (folder === '/..') {
+    if (folder === '..') {
       memo.pop();
-    } else if (folder !== '/.' && folder !== '/') {
-      memo.push(folder);
+    } else if (folder !== '.' && folder !== '') {
+      memo.push('/' + folder);
     }
     return memo;
   }, [])

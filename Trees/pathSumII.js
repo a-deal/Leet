@@ -22,19 +22,15 @@ function pathSum (root, sum)
     return paths
  */
  var pathSum = function(root, sum, path, paths) {
-     paths = paths || [], path = path ||[]
+    paths = paths || [], path = path ||[]
 
-     if (root === null)
-         return paths;
+    if (root !== null) {
+        if (root.left === null && root.right === null && !(sum - root.val))
+            paths.push(path.concat([root.val]));
 
-     if (root.left === null && root.right === null && !(sum - root.val))
-         paths.push(path.concat([root.val]));
+        pathSum(root.left, sum - root.val, path.concat([root.val]), paths);
+        pathSum(root.right, sum - root.val, path.concat([root.val]), paths);
+    }
 
-     if (root.left)
-         pathSum(root.left, sum - root.val, path.concat([root.val]), paths);
-
-     if (root.right)
-         pathSum(root.right, sum - root.val, path.concat([root.val]), paths);
-
-     return paths
- };
+    return paths;
+};

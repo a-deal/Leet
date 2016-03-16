@@ -58,5 +58,4 @@ function findMaxValue (coin) {
 
 console.log(findMaxValue(12)); // 13;
 console.log(findMaxValue(15)); // 15;
-console.log(findMaxValue(999999999)); // 15;
-// console.log(findMaxValue(1000000000)); // 22;
+console.log(findMaxValue(100000000)); // 108333333

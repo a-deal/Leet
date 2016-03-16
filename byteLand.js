@@ -50,7 +50,7 @@ function findMaxValue (coin) {
 function findMaxValue (coin) {
   var cache = [];
   for (var i = 0; i <= coin; i++) {
-    var exchange = Math.floor(i/2) + Math.floor(i/3) + Math.floor(i/4);
+    var exchange = cache[Math.floor(i/2)] + cache[Math.floor(i/3)] + cache[Math.floor(i/4)];
     cache[i] = exchange > i ? exchange : i;
   }
   return cache[coin];
@@ -58,4 +58,5 @@ function findMaxValue (coin) {
 
 console.log(findMaxValue(12)); // 13;
 console.log(findMaxValue(15)); // 15;
-console.log(findMaxValue(100000000)); // 108333333
+console.log(findMaxValue(21)); // 22
+console.log(findMaxValue(100000000)); // 364,906,343

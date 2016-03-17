@@ -46,17 +46,28 @@ function findMaxValue (coin) {
 }
 
 */
-
+var cache = {};
 function findMaxValue (coin) {
-  var cache = [];
-  for (var i = 0; i <= coin; i++) {
-    var exchange = cache[Math.floor(i/2)] + cache[Math.floor(i/3)] + cache[Math.floor(i/4)];
-    cache[i] = exchange > i ? exchange : i;
-  }
+  if (coin < 2) return coin;
+
+  var halfExchange = cache[Math.floor(coin/2)] || findMaxValue(Math.floor(coin/2));
+  var half = Math.floor(coin/2) > halfExchange ? Math.floor(coin/2) : halfExchange;
+
+  var thirdExchange = cache[Math.floor(coin/3)] || findMaxValue(Math.floor(coin/3))
+  var third = thirdExchange > Math.floor(coin/3) ? thirdExchange : Math.floor(coin/3);
+
+  var quarterExchange = cache[Math.floor(coin/4)] || findMaxValue(Math.floor(coin/4));
+  var quarter = quarterExchange > Math.floor(coin/4) ? quarterExchange : Math.floor(coin/4);
+
+  var exchange = half + third + quarter;
+
+  cache[coin] = exchange > coin ? exchange : coin;
   return cache[coin];
 }
 
 console.log(findMaxValue(12)); // 13;
 console.log(findMaxValue(15)); // 15;
-console.log(findMaxValue(21)); // 22
+console.log(findMaxValue(21)); // 22;
+console.log(findMaxValue(1000)); // 1370
 console.log(findMaxValue(100000000)); // 364,906,343
+console.log(findMaxValue(1000000000)); // 4,243,218,150
